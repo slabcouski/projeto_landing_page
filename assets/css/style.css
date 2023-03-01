@@ -1,10 +1,20 @@
+:root{
+    --primary-color: #F15B42;
+    --secondary-color: #161920;
+    --tertiary-color: #1C1F27;
+    --font-header-color: #797d88;
+    --font-text-color: #c3c6cd;
+    --font-text: 'Tilt Warp', cursive;
+}
 *{
 margin: 0;
 padding: 0;
 box-sizing: border-box;
 }
 body{
-    font-family: 'Tilt Warp', cursive;
+    font-family: var(--font-text);
+    background-color: var(--secondary-color);
+    color: var(--font-header-color);
 }
 .container{
     max-width: 1280px;
@@ -12,5 +22,52 @@ body{
     margin: 0 auto;
 }
 header{
-    background-color: #09014a;
+    padding-top: 1rem;
+}
+header nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+header nav .logo{
+    color: var(--primary-color);
+    font-size: 1.8rem;
+}
+header nav span{
+    display: flex;
+    color: var(--font-text-color);
+    font-size: 0.8rem;
+}
+header nav li{
+    display: inline;
+    margin-left: 2rem;
+}
+header nav li a{
+    color: var(--font-header-color);
+    text-decoration: none;
+}
+#home .container{
+    padding: 5rem;
+}
+#home .container h1{
+    color: var(--font-text-color);
+}
+#home .banner{
+    display: inline-flex;
+}
+#home .banner_text{
+    width: 50%;
+    height: 50%;
+}
+#home .banner_text p{
+    padding-top: 1.5rem;
+    text-align: justify;
+}
+#home .banner_img{
+    padding-left: 15rem;
+}
+#home .banner_img img{
+    width: 20rem;
+    height: 20rem;
+    clip-path: circle(50% at 50% 50%);
 }
