@@ -5,6 +5,8 @@
     --font-header-color: #797d88;
     --font-text-color: #c3c6cd;
     --font-text: 'Tilt Warp', cursive;
+    --border-color: linear-gradient(to right, tomato 0%, gold 100%);
+    --card-color: #222;
 }
 *{
 margin: 0;
@@ -54,17 +56,25 @@ header nav li a{
 }
 #home .banner{
     display: inline-flex;
+    align-items: center;
 }
 #home .banner_text{
     width: 50%;
     height: 50%;
+    justify-content: center;
 }
 #home .banner_text p{
     padding-top: 1.5rem;
     text-align: justify;
 }
 #home .banner_img{
-    padding-left: 15rem;
+    margin-left: 15rem;
+    background: var(--border-color);
+    clip-path: circle(50% at 50% 50%);
+    width: 20rem;
+    height: 20rem;
+    border: 10px solid var(--font-text-color);
+    border-radius: 16rem;
 }
 #home .banner_img img{
     width: 20rem;
