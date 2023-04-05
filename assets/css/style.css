@@ -4,6 +4,8 @@
     --tertiary-color: #1C1F27;
     --font-header-color: #797d88;
     --font-text-color: #c3c6cd;
+    --font-title-color: #fff;
+    --cards-color: #1E2029;
     --font-text: 'Tilt Warp', cursive;
     --border-color: linear-gradient(to right, tomato 0%, gold 100%);
     --card-color: #222;
@@ -120,12 +122,51 @@ header nav li a{
     height: 20rem;
     clip-path: circle(50% at 50% 50%);
 }
-#about .custom-shape-divider-bottom-1679360054 .shape-fill {
-    fill: #C3C6CD;
-}
-#about .cards{
+#about .cards_about{
     width: 100%;
-    height: 50vh;
-    margin-top: -10px;
-    background-color: var(--font-text-color);
+    height: auto;
+}
+#about .back_cards{
+    display: flex;
+    justify-content: center;
+}
+#about .cards,
+#services .cards{
+    width: auto;
+    background-color: var(--cards-color);
+    margin: 2rem auto;
+    border-radius: 0.5rem;
+    box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.16),
+                0px 3px 6px 0px rgba(0,0,0,0.23);
+}
+#about .cards h2{
+    text-align: center;
+    color: var(--font-title-color);
+    margin: 2rem auto;
+    font-size: 2rem;
+}
+#about .cards p,
+#services .cards p{
+    text-align: justify;
+    margin: 2rem;
+}
+#services h2{
+    text-align: center;
+    font-size: 2rem;
+    color: var(--font-title-color);
+}
+#services .back_cards{
+    display: flex;
+}
+#services .cards{
+    width: 25%;
+}
+#services .cards h3{
+    text-align: center;
+    color: var(--font-title-color);
+    margin-top: 1rem;
+}
+#services .cards img{
+    width: 100%;
+    border-radius: 0.5rem 0.5rem 0 0;
 }
