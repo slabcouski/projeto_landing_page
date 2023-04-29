@@ -1,3 +1,8 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
 :root{
     --primary-color: #F15B42;
     --secondary-color: #161920;
@@ -10,11 +15,6 @@
     --border-color: linear-gradient(to right, tomato 0%, gold 100%);
     --card-color: #222;
 }
-*{
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-}
 body{
     font-family: var(--font-text);
     background-color: var(--secondary-color);
@@ -25,8 +25,15 @@ body{
     width: 100%;
     margin: 0 auto;
 }
-header{
-    padding-top: 1rem;
+.grid{
+    display: grid;
+    grid-template-areas: 
+        "head head head"
+        "cont cont cont"
+        "foot foot foot";
+}
+header {
+    grid-area: head;
 }
 header nav{
     display: flex;
@@ -42,48 +49,87 @@ header nav span{
     color: var(--font-text-color);
     font-size: 0.8rem;
 }
-header nav li{
-    display: inline;
+header nav ul li{
+    position: relative;
+    display: inline-flex;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.5s;
     margin-left: 2rem;
 }
-header nav li a{
+header nav ul li::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 3px;
+    top: 100%;
+    left: 0;
+    background: var(--primary-color);
+    transition: transform 0.5s;
+    transform: scaleX(0);
+    transform-origin: right;
+}
+header nav ul li:hover {
+    color: var(--font-header-color);
+}
+header nav ul li:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+header nav ul li a{
     color: var(--font-header-color);
     text-decoration: none;
 }
-#home .container{
-    padding: 5rem;
-    width: 100%;
+main {
+    grid-area: cont;
 }
-#home .container h1{
-    color: var(--font-text-color);
+main .banner{
+    height: 50rem;
+    background-image: url(../img/blob-scene-haikei.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: -2;
 }
-#home .banner{
-    display: inline-flex;
-    align-items: center;
+main .banner,
+main .back_cards,
+footer .cards_contact{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
-#home .banner_text{
-    width: 50%;
-    height: 50%;
+main .banner_text{
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+    width: 100%;
+    padding: 3rem;
 }
-#home .banner_text p{
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+main .banner_text h1{
+    display: flex;
+    text-align: start;
+    color: var(--font-title-color);
+    font-size: 3rem;
+}
+main .banner_text h2{
+    color: var(--primary-color);
+}
+main .banner_text p{
+    padding: 1.5rem 0;
     text-align: justify;
 }
-#home .button{
+main .banner_text button{
+    width: 40%;
     background: var(--tertiary-color);
     cursor: pointer;
     border: none;
-    padding: 1.2rem 2.2rem;
+    padding: 1.2rem;
     color: var(--font-text-color);
     font-size: 1.2rem;
     font-weight: bold;
-    position: relative;
     border-radius: 12px;
-    margin-left: 10px;
+    position: relative;
 }
-#home .button::before{
+main .banner_text button::before{
     content: "";
     position: absolute;
     top: 0;
@@ -97,76 +143,150 @@ header nav li a{
     filter: blur(8px);
     animation: glowing 20s linear infinite;
 }
+main .banner_text button a{
+    text-decoration: none;
+    color: var(--font-title-color);
+}
 @keyframes glowing{
-    0% {
+    0%{
         background-position: 0 0;
     }
-    50% {
+    50%{
         background-position: 400% 0;
     }
-    100% {
+    100%{
         background-position: 0 0;
     }
 }
-#home .banner_img{
-    margin-left: 15rem;
-    background: var(--border-color);
+main .banner_img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     clip-path: circle(50% at 50% 50%);
+}
+main .banner_img img{
     width: 20rem;
-    height: 20rem;
+    clip-path: circle(50% at 50% 50%);
+    background: var(--border-color);
     border: 10px solid var(--font-text-color);
     border-radius: 16rem;
 }
-#home .banner_img img{
-    width: 20rem;
-    height: 20rem;
-    clip-path: circle(50% at 50% 50%);
+main .cards_about{
+    margin-top: 6rem;
+    border: 1px solid var(--primary-color);
 }
-#about .cards_about{
-    width: 100%;
-    height: auto;
-}
-#about .back_cards{
-    display: flex;
-    justify-content: center;
-}
-#about .cards,
-#services .cards{
-    width: auto;
+main .cards_about,
+main .back_cards .cards{
     background-color: var(--cards-color);
-    margin: 2rem auto;
-    border-radius: 0.5rem;
+    text-align: justify;
+    padding: 2rem;
+    border-radius: 10px;
     box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.16),
                 0px 3px 6px 0px rgba(0,0,0,0.23);
 }
-#about .cards h2{
+main .cards_about h2,
+.cards_services h2{
     text-align: center;
     color: var(--font-title-color);
-    margin: 2rem auto;
     font-size: 2rem;
 }
-#about .cards p,
-#services .cards p{
+main .cards_about p{
+    margin-top: 2rem;
+}
+main .cards_services h2{
+    margin: 2rem 0;
+}
+main .back_cards{
+    gap: 5rem;
+}
+main .back_cards .cards{
+    padding: 0;
+}
+main .cards img{
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+}
+main .cards h3{
+    text-align: center;
+    color: var(--font-title-color);
+    margin: 1rem 0;
+    font-size: 1.5rem;
+}
+main .cards p{
     text-align: justify;
-    margin: 2rem;
+    padding: 0 2rem 2rem 2rem;
 }
-#services h2{
-    text-align: center;
+footer {
+    grid-area: foot;
+    margin-top: 3rem;
+    background-color: var(--cards-color);
+    padding: 3rem;
+}
+footer .icons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 25px;
+}
+footer .icon{
+    display: inline-flex;
+    width: 3rem;
+    height: 3rem;
+    text-decoration: none;
     font-size: 2rem;
     color: var(--font-title-color);
+    border-radius: 50%;
+    outline: 2px solid var(--font-title-color);
+    transition-property: outline-offset, outline-color, background-color;
+    transition-duration: 0.25s; 
 }
-#services .back_cards{
-    display: flex;
+footer .icon:hover{
+    outline-offset: 4px;
 }
-#services .cards{
-    width: 25%;
+footer .icon i{
+    margin: auto;
 }
-#services .cards h3{
-    text-align: center;
+footer .icon:hover i{
+    animation: snake 0.25s;
+}
+footer .icon--instagram:hover{
+    background-image: radial-gradient(
+        circle at 30% 107%,
+        #fdf497 0%,
+        #fdf497 5%,
+        #fd5949 45%,
+        #d6249f 60%,
+        #285aeb 90%
+    );
+    outline-color: #a02d76;
+}
+footer .icon--facebook:hover{
+    background-color: #1da1f2;
+    outline-color: #1da1f2;
+}
+footer .icon--github:hover{
+    background-color: #2ea44f;
+    outline-color: #2ea44f;
+}
+footer .icon--linkedin:hover{
+    background-color: #0077b5;
+    outline-color: #0077b5;
+    ;
+}
+footer .subscribe h3{
     color: var(--font-title-color);
+    font-size: 1.5rem;
+    margin-top: 2rem;
+}
+footer .subscribe input{
+    background-color: var(--primary-color);
+    border: 0;
+    width: 90%;
+    height: 2rem;
     margin-top: 1rem;
 }
-#services .cards img{
-    width: 100%;
-    border-radius: 0.5rem 0.5rem 0 0;
+footer .subscribe input::placeholder{
+    color: var(--font-title-color);
+    font-size: large;
+    padding-left: 1rem;
 }
